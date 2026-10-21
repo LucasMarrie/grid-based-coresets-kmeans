@@ -11,13 +11,15 @@ from coresets.grid.grid_mean import GridMeanCoreset
 from coresets.grid.search_grid_size import binary_search_grid_size
 
 from benchmarking.experimental_constants import (
-    test_datasets,
+    get_full_test_datasets,
     ms,
     trial_seeds,
 )
 import os
 
 
+
+test_datasets = get_full_test_datasets()
 
 tests = []
 for test_dataset in test_datasets:

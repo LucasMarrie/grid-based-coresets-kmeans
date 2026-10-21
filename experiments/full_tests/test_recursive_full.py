@@ -9,7 +9,7 @@ from coresets.grid.recursive import RecursiveGridCoreset
 from coresets.grid.search_grid_size import binary_search_grid_size
 
 from benchmarking.experimental_constants import (
-    test_datasets,
+    get_full_test_datasets,
     ms,
     recursive_score_fns,
     starting_factors,
@@ -19,6 +19,8 @@ import os
 
 
 
+
+test_datasets = get_full_test_datasets()
 
 tests = []
 for test_dataset in test_datasets:

@@ -1,15 +1,18 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="coreset",                # your package’s name
-    version="0.1",                 # your version
-    package_dir={"": "src"},       # tell setuptools where to find your code
+    name="grid-coresets",
+    version="0.1",
+    description="Grid-based coreset construction for accelerating k-means clustering",
+    package_dir={"": "src"},
     packages=find_packages(where="src"),
+    python_requires=">=3.10",
     install_requires=[
         "numpy",
         "scipy",
-        "scikit-learn",
-        "ucimlrepo",
         "pandas",
+        "scikit-learn",
+        "matplotlib",
+        "ucimlrepo",
     ],
 )

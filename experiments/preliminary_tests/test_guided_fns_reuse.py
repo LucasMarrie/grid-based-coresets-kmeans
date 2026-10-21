@@ -3,12 +3,7 @@ Preliminary tests for guided functions with re-use centers enabled
 """
 
 from benchmarking.individual_tester import IndividualTestFramework
-from benchmarking.datasets import (
-    get_blobs_2d,
-    get_blobs_3d,
-    get_covertype_data,
-    get_us_census_data,
-)
+from benchmarking.datasets import get_test_datasets
 
 from coresets.standard.identity import IdentityCoreset
 from coresets.grid.guided import KMeansGuidedRecursiveGrid
@@ -23,17 +18,7 @@ from coresets.grid.search_grid_size import binary_search_grid_size
 import os
 
 print("Preparing Tests and Datasets for guided fns...")
-covertype_2d, covertype_3d = get_covertype_data()
-us_census_2d, us_census_3d = get_us_census_data()
-
-test_datasets = [
-    {"name": "2d blobs", "dataset": get_blobs_2d(1000000, 20), "k_clusters": 20},
-    {"name": "3d blobs", "dataset": get_blobs_3d(1000000, 20), "k_clusters": 20},
-    {"name": "Covertype 2d", "dataset": covertype_2d, "k_clusters": 20},
-    {"name": "Covertype 3d", "dataset": covertype_3d, "k_clusters": 20},
-    {"name": "US Census 2d", "dataset": us_census_2d, "k_clusters": 20},
-    {"name": "US Census 3d", "dataset": us_census_3d, "k_clusters": 20},
-]
+test_datasets = get_test_datasets(k_clusters=20)
 
 starting_factors = [0.3] #[0.1, 0.3, 0.5, 0.7, 0.9]
 target_cells_list = [10000] #[1000, 2000, 5000, 10000]

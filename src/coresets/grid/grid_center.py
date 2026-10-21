@@ -20,7 +20,7 @@ class GridCenterCoreset(AbstractCoreset):
         coreset_points = []
         weights = []
         for idx, cell_points_idx in cell_dict.items():
-            mid_point = np.array(idx) + self.grid_size / 2 + min_coords * self.grid_size
+            mid_point = min_coords + (np.array(idx) + 0.5) * self.grid_size
             coreset_points.append(mid_point)
             weights.append(len(cell_points_idx))
     

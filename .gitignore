@@ -218,3 +218,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# macOS
+.DS_Store
+
+# Local conda environment
+.conda/
+
+# Project outputs that are generated locally
+data/
+logs/
+sanity_check_results/
+results_display/

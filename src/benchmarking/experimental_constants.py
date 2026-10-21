@@ -1,13 +1,11 @@
 """
-Experimental constants for the full benchmarking suite. (Not for prelimanry tests)
+Experimental constants for the full benchmarking suite. (Not for preliminary tests)
+
+Datasets are built lazily through get_full_test_datasets() so that importing this module
+(e.g. from the analysis scripts) does not trigger any data downloads or generation.
 """
 
-from benchmarking.datasets import (
-    get_blobs_2d,
-    get_blobs_3d,
-    get_covertype_data,
-    get_us_census_data,
-)
+from benchmarking.datasets import get_test_datasets
 from coresets.grid.score_heuristics import (
     population_score,
     variance_score,
@@ -20,22 +18,16 @@ from coresets.grid.score_heuristics import (
     margin_score
 )
 
-covertype_2d, covertype_3d = get_covertype_data()
-us_census_2d, us_census_3d = get_us_census_data()
-
 ms = [50, 100, 200, 500]
 ks = [10, 20, 30, 40, 50]
 
-test_datasets = []
-for k in ks:
-    test_datasets += [
-        {"name": f"2d blobs", "dataset": get_blobs_2d(1000000, k), "k_clusters": k},
-        {"name": f"3d blobs", "dataset": get_blobs_3d(1000000, k), "k_clusters": k},
-        {"name": f"Covertype 2d", "dataset": covertype_2d, "k_clusters": k},
-        {"name": f"Covertype 3d", "dataset": covertype_3d, "k_clusters": k},
-        {"name": f"US Census 2d", "dataset": us_census_2d, "k_clusters": k},
-        {"name": f"US Census 3d", "dataset": us_census_3d, "k_clusters": k},
-    ]
+
+def get_full_test_datasets():
+    test_datasets = []
+    for k in ks:
+        test_datasets += get_test_datasets(k)
+    return test_datasets
+
 
 starting_factors = [0.1, 0.9]
 
@@ -52,5 +44,3 @@ guided_score_fns = [("Error", error_score),
 km_interval = 0.1
 
 trial_seeds = list(range(10))
-
-

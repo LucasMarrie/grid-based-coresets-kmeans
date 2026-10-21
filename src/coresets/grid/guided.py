@@ -10,7 +10,7 @@ class KMeansGuidedRecursiveGrid(RecursiveGridCoreset):
         starting_grid_size: float,
         target_coreset_size: int,
         score_fn: Callable[[np.ndarray, np.ndarray], float],
-        km_interval: int = 0.1,
+        km_interval: float = 0.1,
         km_kwargs: dict = None,
         km_reuse_centers: bool = False,
     ):
